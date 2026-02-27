@@ -25,3 +25,18 @@ spring:
 external:
   exchange-rate:
     url: https://open.er-api.com/v6/latest
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      exchangeRateService:
+        failureRateThreshold: 50
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        waitDurationInOpenState: 30s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        recordExceptions:
+          - org.springframework.web.client.RestClientException
+          - java.lang.IllegalStateException
+          - java.net.SocketTimeoutException
