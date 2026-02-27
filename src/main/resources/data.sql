@@ -1,8 +1,8 @@
-INSERT INTO accounts (account_number, holder_name, account_type, balance, status)
-VALUES ('RHB-000001', 'Ahmad bin Abdullah', 'SAVINGS', 5000.0000, 'ACTIVE'),
-       ('RHB-000002', 'Siti Nur Aisyah', 'CURRENT', 12500.0000, 'ACTIVE'),
-       ('RHB-000003', 'Rajesh Kumar', 'SAVINGS', 3200.0000, 'ACTIVE'),
-       ('RHB-000004', 'Lee Mei Ling', 'CURRENT', 8750.0000, 'SUSPENDED');
+INSERT INTO accounts (account_number, seq_number, holder_name, account_type, balance, status)
+VALUES ('RHB-000001', 96, 'Ahmad bin Abdullah', 'SAVINGS', 5000.0000, 'ACTIVE'),
+       ('RHB-000002', 97, 'Siti Nur Aisyah', 'CURRENT', 12500.0000, 'ACTIVE'),
+       ('RHB-000003', 98, 'Rajesh Kumar', 'SAVINGS', 3200.0000, 'ACTIVE'),
+       ('RHB-000004', 99, 'Lee Mei Ling', 'CURRENT', 8750.0000, 'SUSPENDED');
 
 INSERT INTO transactions (account_id, reference_number, type, amount, description)
 VALUES (1, 'TXN-20240101-0001', 'CREDIT', 1000.0000, 'Salary deposit'),

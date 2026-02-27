@@ -40,13 +40,14 @@ public class AccountService {
     }
 
     public AccountResponse createAccount(AccountRequest request) {
-        String accountNumber = generateAccountNumber();
         Account account = new Account(
-            accountNumber,
+            null,
             request.holderName(),
             request.accountType(),
             request.initialBalance()
         );
+        var seq = accountRepository.nextSequenceValue();
+        account.setSeqNumber(seq);
         Account saved = accountRepository.save(account);
         log.info("Created account: {}", saved.getAccountNumber());
         return AccountResponse.from(saved);
@@ -75,15 +76,5 @@ public class AccountService {
     public Account findAccountById(Long id) {
         return accountRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Account not found with id: " + id));
-    }
-
-    private String generateAccountNumber() {
-        long count = accountRepository.count() + 1;
-        String candidate = String.format("RHB-%06d", count);
-        while (accountRepository.existsByAccountNumber(candidate)) {
-            count++;
-            candidate = String.format("RHB-%06d", count);
-        }
-        return candidate;
     }
 }

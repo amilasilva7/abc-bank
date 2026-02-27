@@ -18,6 +18,9 @@ public class Account {
     @Column(name = "account_number", unique = true, nullable = false)
     private String accountNumber;
 
+    @Column(name = "seq_number", unique = true, nullable = false)
+    private Long seqNumber;
+
     @Column(name = "holder_name", nullable = false)
     private String holderName;
 
@@ -43,6 +46,11 @@ public class Account {
         this.holderName = holderName;
         this.accountType = accountType;
         this.balance = balance;
+    }
+
+    @PrePersist
+    private void generateAccountNumber() {
+        this.accountNumber = "RHB-%06d".formatted(this.seqNumber);
     }
 
     public Long getId() {
@@ -99,5 +107,9 @@ public class Account {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setSeqNumber(Long seqNumber) {
+        this.seqNumber = seqNumber;
     }
 }
