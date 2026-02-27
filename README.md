@@ -9,7 +9,7 @@ A Spring Boot REST API for banking operations with account management, transacti
 
 ### Run
 ```bash
-gradle bootRun
+./gradlew bootRun
 ```
 API runs on `http://localhost:8080`
 
